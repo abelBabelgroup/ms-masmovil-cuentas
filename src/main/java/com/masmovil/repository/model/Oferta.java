@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,13 +34,15 @@ public class Oferta implements Serializable {
     private String idPropietario;
 
     @Column(name = "VERSION")
-    private String version;
+    private Integer version;
 
+    // preguntar si se usará el Date de java.util o el OffsetDateTime de java.time
     @Column(name = "FEC_ALTA")
-    private String fechaAlta;
+    private Date fechaAlta;
 
+    // preguntar si se usará el Date de java.util o el OffsetDateTime de java.time
     @Column(name = "FEC_ESTADO")
-    private String fechaEstado;
+    private Date fechaEstado;
 
     @Column(name = "ESTADO")
     private String estado;
