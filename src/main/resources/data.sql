@@ -1,1 +1,0 @@
-insert into USERS(NOMBRE, NICK_NAME) VALUES ('Alberto Pruebas', 'alberto.pruebas');
