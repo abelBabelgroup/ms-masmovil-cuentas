@@ -16,19 +16,20 @@ public class Cuenta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CUENTA")
-    Long idCuenta;
+    private Long idCuenta;
 
     // Preguntar si el tamaño lo validamos aquí
-    String cif;
+    private String cif;
 
-    String nombre;
+    private String nombre;
 
     @Column(name = "ID_PROPIETARIO")
-    String idPropietario;
+    private String idPropietario;
 
     @Column(name = "FEC_INICIO_PROPIEDAD")
-    Date fecInicioPropiedad;
+    private Date fecInicioPropiedad;
 
     @Column(name = "FEC_FIN_PROPIEDAD")
-    Date fecFinPropiedad;
+    private Date fecFinPropiedad;
+
 }
