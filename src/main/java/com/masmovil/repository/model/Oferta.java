@@ -8,6 +8,7 @@ import java.util.Date;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -30,6 +31,7 @@ public class Oferta implements Serializable {
 
     @Column(name = "ID_PROPIETARIO")
     @Email
+    @Max(50)
     private String idPropietario;
 
     private Integer version;
@@ -46,8 +48,10 @@ public class Oferta implements Serializable {
 
     @Column(name = "ESTADO")
     @NotNull
+    @Max(20)
     private String estado;
 
+    @Max(10000)
     private String contenido;
 
 }
