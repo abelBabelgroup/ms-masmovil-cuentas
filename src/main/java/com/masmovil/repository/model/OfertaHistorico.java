@@ -5,15 +5,16 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Data
 @NoArgsConstructor
 @Table(name = "ofertas_historico")
-public class OfertaHistorico {
+public class OfertaHistorico implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +26,7 @@ public class OfertaHistorico {
     private Oferta idOferta;
 
     @NotNull
-    @Max(20)
+    @Size(max = 20)
     private String estado;
 
     @Column(name = "FEC_ESTADO")
@@ -34,6 +35,6 @@ public class OfertaHistorico {
 
     @Column(name = "USUARIO_ESTADO")
     @Email
-    @Max(50)
+    @Size(max = 50)
     private String usuarioEstado;
 }

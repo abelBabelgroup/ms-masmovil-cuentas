@@ -3,13 +3,13 @@ package com.masmovil.repository.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Data
@@ -48,10 +48,10 @@ public class Oferta implements Serializable {
 
     @Column(name = "ESTADO")
     @NotNull
-    @Max(20)
+    @Size(max = 20)
     private String estado;
 
-    @Max(10000)
+    @Size(max = 10000)
     private String contenido;
 
 }

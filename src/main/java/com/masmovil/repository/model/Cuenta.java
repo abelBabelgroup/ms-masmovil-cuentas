@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -20,15 +20,15 @@ public class Cuenta implements Serializable {
     @Column(name = "ID_CUENTA")
     private Long idCuenta;
 
-    @Max(9)
+    @Size(max = 9)
     private String cif;
 
-    @Max(250)
+    @Size(max = 250)
     private String nombre;
 
     @Column(name = "ID_PROPIETARIO")
     @Email
-    @Max(50)
+    @Size(max = 50)
     private String idPropietario;
 
     @Column(name = "FEC_INICIO_PROPIEDAD")

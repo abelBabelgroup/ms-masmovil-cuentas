@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
 
-    List<Cuenta> findAllByIdPropietario(String idPropietario);
-    List<Cuenta> findAllByIdPropietarioAndNombre(String idPropietario, String nombre);
-    List<Cuenta> findAllByIdPropietarioAndNombreAndCif(String idPropietario, String nombre, String cif);
+    List<Cuenta> findByIdPropietario(String idPropietario);
+
+    List<Cuenta> findByIdPropietarioAndNombreOrCif(String idPropietario, String nombre, String cif);
 }
