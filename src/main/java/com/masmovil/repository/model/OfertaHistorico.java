@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -21,11 +23,14 @@ public class OfertaHistorico {
     @JoinColumn(name = "ID_OFERTA")
     private Oferta idOferta;
 
+    @NotNull
     private String estado;
 
     @Column(name = "FEC_ESTADO")
+    @Temporal(TemporalType.DATE)
     private Date fecEstado;
 
     @Column(name = "USUARIO_ESTADO")
+    @Email
     private String usuarioEstado;
 }

@@ -6,12 +6,9 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -25,12 +22,14 @@ public class Oferta implements Serializable {
     private Long idOferta;
 
     @Column(name = "ID_OFERTA_ORIGEN")
+    @NotNull
     private Integer IdOfertaOrigen;
 
     @Column(name = "ID_CUENTA")
     private String idCuenta;
 
     @Column(name = "ID_PROPIETARIO")
+    @Email
     private String idPropietario;
 
     @Column(name = "VERSION")
@@ -38,13 +37,16 @@ public class Oferta implements Serializable {
 
     // preguntar si se usará el Date de java.util o el OffsetDateTime de java.time
     @Column(name = "FEC_ALTA")
+    @Temporal(TemporalType.DATE)
     private Date fechaAlta;
 
     // preguntar si se usará el Date de java.util o el OffsetDateTime de java.time
     @Column(name = "FEC_ESTADO")
+    @Temporal(TemporalType.DATE)
     private Date fechaEstado;
 
     @Column(name = "ESTADO")
+    @NotNull
     private String estado;
 
     @Column(name = "CONTENIDO")
