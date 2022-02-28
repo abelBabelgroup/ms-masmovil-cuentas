@@ -11,6 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -27,20 +30,32 @@ public class Contacto implements Serializable {
     private Integer idCuenta;
 
     @Column(name = "TIPO_DOCUMENTO")
+    @Max(10)
     private String tipoDocumento;
 
+    @Max(20)
     private String documento;
 
+    @NotNull
+    @Max(100)
     private String nombre;
 
+    @NotNull
+    @Max(100)
     private String apellidos;
 
+    @Max(100)
     private String telefono;
 
+    @NotNull
+    @Max(20)
+    @Email
     private String email;
 
+    @NotNull
     private String tipo;
 
+    @NotNull
     private boolean apoderado;
 
 }
