@@ -29,25 +29,18 @@ public class Contacto implements Serializable {
     @Column(name = "TIPO_DOCUMENTO")
     private String tipoDocumento;
 
-    @Column(name = "DOCUMENTO")
     private String documento;
 
-    @Column(name = "NOMBRE")
     private String nombre;
 
-    @Column(name = "APELLIDOS")
     private String apellidos;
 
-    @Column(name = "TELEFONO")
     private String telefono;
 
-    @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "TIPO")
     private String tipo;
 
-    @Column(name = "APODERADO")
     private boolean apoderado;
 
 }

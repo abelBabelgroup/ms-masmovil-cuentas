@@ -32,7 +32,6 @@ public class Oferta implements Serializable {
     @Email
     private String idPropietario;
 
-    @Column(name = "VERSION")
     private Integer version;
 
     // preguntar si se usará el Date de java.util o el OffsetDateTime de java.time
@@ -49,7 +48,6 @@ public class Oferta implements Serializable {
     @NotNull
     private String estado;
 
-    @Column(name = "CONTENIDO")
     private String contenido;
 
 }
