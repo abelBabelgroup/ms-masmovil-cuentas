@@ -30,7 +30,6 @@ public class Oferta implements Serializable {
     private String idCuenta;
 
     @Column(name = "ID_PROPIETARIO")
-    @Max(50)
     @Email
     @Max(50)
     private String idPropietario;
@@ -48,7 +47,6 @@ public class Oferta implements Serializable {
     private Date fechaEstado;
 
     @Column(name = "ESTADO")
-    @Max(20)
     @NotNull
     @Max(20)
     private String estado;
