@@ -1,4 +1,4 @@
-package com.masmovil.repository.model;
+package com.masmovil.repository.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +18,7 @@ public class Cuenta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CUENTA")
-    private Long idCuenta;
+    private Long accountId;
 
     @Max(9)
     private String cif;

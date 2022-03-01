@@ -1,4 +1,4 @@
-package com.masmovil.repository.model;
+package com.masmovil.repository.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +19,7 @@ public class Sede implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CUENTA")
-    private Cuenta idCuenta;
+    private Cuenta accountId;
 
     private boolean principal;
 

@@ -1,6 +1,6 @@
 package com.masmovil.service;
 
-import com.masmovil.repository.model.Cuenta;
+import com.masmovil.repository.entity.Cuenta;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,7 @@
 package com.masmovil.service;
 
-public interface OfertaService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class OfertaService {
 }

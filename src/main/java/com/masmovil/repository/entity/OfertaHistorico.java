@@ -1,4 +1,4 @@
-package com.masmovil.repository.model;
+package com.masmovil.repository.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +22,7 @@ public class OfertaHistorico {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_OFERTA")
-    private Oferta idOferta;
+    private offer idOferta;
 
     @NotNull
     @Max(20)

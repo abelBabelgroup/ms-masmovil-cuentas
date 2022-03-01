@@ -1,10 +1,9 @@
 package com.masmovil.domain.dto;
 
-import com.masmovil.repository.model.Oferta;
+import com.masmovil.repository.entity.offer;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,7 +12,7 @@ import java.util.Date;
 public class OfertaHistoricoDto implements Serializable {
 
     private Long idHistorico;
-    private Oferta idOferta;
+    private offer idOferta;
     private String estado;
     private Date fecEstado;
     private String usuarioEstado;

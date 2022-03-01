@@ -1,6 +1,6 @@
 package com.masmovil.domain.dto;
 
-import com.masmovil.repository.model.Cuenta;
+import com.masmovil.repository.entity.Cuenta;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class SedeDto implements Serializable {
 
     private Long idSede;
-    private Cuenta idCuenta;
+    private Cuenta accountId;
     private boolean principal;
     private String provincia;
     private String municipio;

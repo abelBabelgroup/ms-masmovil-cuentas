@@ -1,7 +1,7 @@
 package com.masmovil.controller;
 
 import com.masmovil.domain.dto.CuentaDto;
-import com.masmovil.repository.model.Cuenta;
+import com.masmovil.repository.entity.Cuenta;
 import com.masmovil.service.CuentaService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

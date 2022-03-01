@@ -1,7 +1,7 @@
 package com.masmovil.service.impl;
 
 import com.masmovil.repository.CuentaRepository;
-import com.masmovil.repository.model.Cuenta;
+import com.masmovil.repository.entity.Cuenta;
 import com.masmovil.service.CuentaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
