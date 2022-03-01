@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 public class ContactDto implements Serializable {
 
     private Long contactId;
-    private Integer accountId;
+    private AccountDto accountId;
 
     @NotNull
     @Size(max = 10)

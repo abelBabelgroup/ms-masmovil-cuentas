@@ -7,7 +7,10 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,8 +23,9 @@ public class Contact implements Serializable {
     @Column(name = "ID_CONTACTO")
     private Long contactId;
 
-    @Column(name = "ID_CUENTA")
-    private Integer accountId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_CUENTA")
+    private Account accountId;
 
     @Column(name = "TIPO_DOCUMENTO")
     private String documentType;

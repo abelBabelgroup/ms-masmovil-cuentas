@@ -4,18 +4,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Data
 @NoArgsConstructor
 @Table(name = "oferta")
-public class offer implements Serializable {
+public class Offer implements Serializable {
 
     @Id
     @Column(name = "ID_OFERTA")
@@ -24,25 +26,25 @@ public class offer implements Serializable {
     @Column(name = "ID_OFERTA_ORIGEN")
     private Integer originOfferId;
 
-    @Column(name = "ID_CUENTA")
-    private String accountId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_CUENTA")
+    private Account accountId;
 
     @Column(name = "ID_PROPIETARIO")
     private String ownerId;
 
     @Column(name = "VERSION")
-    private Integer version;
+    private String version;
 
     @Column(name = "FEC_ALTA")
-    private Date creationDate;
+    private String createDate;
 
     @Column(name = "FEC_ESTADO")
-    private Date statusDate;
+    private String statusDate;
 
     @Column(name = "ESTADO")
     private String status;
 
     @Column(name = "CONTENIDO")
     private String content;
-
 }

@@ -4,36 +4,29 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "ofertas_historico")
-public class OfertaHistorico {
+@Table(name = "oferta_historico")
+public class OfferHistory implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_HISTORICO")
-    private Long idHistorico;
+    private Long historyId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_OFERTA")
-    private offer idOferta;
+    private Offer offerId;
 
-    @NotNull
-    @Max(20)
-    private String estado;
+    private String state;
 
     @Column(name = "FEC_ESTADO")
-    @Temporal(TemporalType.DATE)
-    private Date fecEstado;
+    private Date stateDate;
 
     @Column(name = "USUARIO_ESTADO")
-    @Email
-    @Max(50)
-    private String usuarioEstado;
+    private String userState;
 }

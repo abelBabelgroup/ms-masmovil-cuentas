@@ -6,8 +6,7 @@ import com.masmovil.repository.entity.Contact;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ContactService {
@@ -18,16 +17,20 @@ public class ContactService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public ContactDto createContact(Contact contact) {
-        Optional<Contact> contact1 = contactRepository.create(contact);
-        return contact1.map(value -> modelMapper.map(value, ContactDto.class)).orElseThrow();
+    @Transactional
+    public ContactDto createContact(ContactDto contactDto) {
+        Contact contact = modelMapper.map(contactDto, Contact.class);
+        return modelMapper.map(contactRepository.save(contact), ContactDto.class);
+
     }
 
-    public Optional<Contact> updateContact(Long contactId) {
-        return contactRepository.update(contactId);
-    }
-
-    public Optional<Contact> deleteContact(Long contactId) {
-        return contactRepository.delete(contactId);
-    }
+//    @Transactional
+//    public Contact updateContact(Long contactId) {
+//        return contactRepository.update(contactId);
+//    }
+//
+//    @Transactional
+//    public Contact deleteContact(Long contactId) {
+//        return contactRepository.delete(contactId);
+//    }
 }

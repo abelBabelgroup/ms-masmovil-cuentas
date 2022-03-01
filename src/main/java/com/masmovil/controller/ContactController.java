@@ -6,14 +6,10 @@ import com.masmovil.service.ContactService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -28,20 +24,20 @@ public class ContactController {
     private ContactService contactService;
 
     @PostMapping("")
-    public ResponseEntity<ContactDto> createContact(@Valid @RequestBody Contact contact) {
-        ContactDto contactDto1 = contactService.createContact(contact);
+    public ResponseEntity<ContactDto> createContact(@Valid @RequestBody ContactDto contactDto) {
+        ContactDto contactDto1 = contactService.createContact(contactDto);
         return ResponseEntity.ok(contactDto1);
     }
 
-    @PutMapping("accounts/{accountId}/contact")
-    public ResponseEntity<ContactDto> updateContact(@RequestParam Long accountId) {
-        contactService.updateContact(accountId);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @DeleteMapping("accounts/{accountId}/contact")
-    public ResponseEntity<Void> deleteContact(@RequestParam Long accountId) {
-        contactService.deleteContact(accountId);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+//    @PutMapping("accounts/{accountId}/contact")
+//    public ResponseEntity<ContactDto> updateContact(@RequestParam Long accountId) {
+//        contactService.updateContact(accountId);
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
+//
+//    @DeleteMapping("accounts/{accountId}/contact")
+//    public ResponseEntity<Void> deleteContact(@RequestParam Long accountId) {
+//        contactService.deleteContact(accountId);
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 }
