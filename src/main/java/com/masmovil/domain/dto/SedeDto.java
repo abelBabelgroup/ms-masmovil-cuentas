@@ -1,6 +1,6 @@
 package com.masmovil.domain.dto;
 
-import com.masmovil.repository.model.Account;
+import com.masmovil.repository.entity.Account;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

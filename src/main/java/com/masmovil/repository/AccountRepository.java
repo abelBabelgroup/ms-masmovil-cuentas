@@ -1,6 +1,6 @@
 package com.masmovil.repository;
 
-import com.masmovil.repository.model.Account;
+import com.masmovil.repository.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

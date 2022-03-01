@@ -2,7 +2,7 @@ package com.masmovil.service;
 
 import com.masmovil.domain.dto.AccountDto;
 import com.masmovil.repository.AccountRepository;
-import com.masmovil.repository.model.Account;
+import com.masmovil.repository.entity.Account;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;

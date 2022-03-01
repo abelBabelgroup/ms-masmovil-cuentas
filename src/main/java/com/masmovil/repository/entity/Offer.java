@@ -1,14 +1,17 @@
-package com.masmovil.repository.model;
+package com.masmovil.repository.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 @Data
@@ -23,23 +26,25 @@ public class Offer implements Serializable {
     @Column(name = "ID_OFERTA_ORIGEN")
     private Integer originOfferId;
 
-    @Column(name = "ID_CUENTA")
-    private String accountId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_CUENTA")
+    private Account accountId;
 
     @Column(name = "ID_PROPIETARIO")
     private String ownerId;
 
-    private Integer version;
+    @Column(name = "VERSION")
+    private String version;
 
     @Column(name = "FEC_ALTA")
-    private Date entryDate;
+    private String createDate;
 
     @Column(name = "FEC_ESTADO")
-    private Date stateDate;
+    private String statusDate;
 
     @Column(name = "ESTADO")
-    private String state;
+    private String status;
 
+    @Column(name = "CONTENIDO")
     private String content;
-
 }

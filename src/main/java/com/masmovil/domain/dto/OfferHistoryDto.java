@@ -1,6 +1,6 @@
 package com.masmovil.domain.dto;
 
-import com.masmovil.repository.model.Offer;
+import com.masmovil.repository.entity.Offer;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
