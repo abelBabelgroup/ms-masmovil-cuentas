@@ -5,6 +5,8 @@ import com.masmovil.repository.AccountRepository;
 import com.masmovil.repository.model.Account;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,10 +34,14 @@ public class AccountService {
 
     @Transactional(readOnly = true)
     public List<AccountDto> getAccounts(List<String> ownerId, String name, String cif) {
-        List<AccountDto> cuentasDto = new ArrayList<>();
-        ownerId.forEach(id -> cuentasDto.addAll(accountRepository.findByOwnerIdAndNameOrCif(id, name, cif).stream().map(account -> modelMapper.map(account, AccountDto.class)).collect(Collectors.toList())));
+        List<AccountDto> accountsDto = new ArrayList<>();
+        ExampleMatcher caseInsensitiveExampleMatcher = ExampleMatcher.matchingAll().withIgnoreCase();
+        ownerId.forEach(id ->{
+            Example<Account> example = Example.of(new Account(id, name, cif), caseInsensitiveExampleMatcher);
+            accountsDto.addAll(accountRepository.findAll(example).stream().map(account -> modelMapper.map(account, AccountDto.class)).collect(Collectors.toList()));
+        });
 
-        return cuentasDto;
+        return accountsDto;
     }
 
     @Transactional(readOnly = true)
