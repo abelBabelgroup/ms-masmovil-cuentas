@@ -19,7 +19,7 @@ public class Sede implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CUENTA")
-    private Cuenta idCuenta;
+    private Account idAccount;
 
     private boolean principal;
 
