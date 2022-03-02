@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface ContactRepository extends JpaRepository<Contact, Long> {
 
     Contact save(Contact contact);
-//    Contact update(Long contactId);
-//    Contact delete(Long contactId);
+
+    Contact findByContactId(Long contactId);
 }

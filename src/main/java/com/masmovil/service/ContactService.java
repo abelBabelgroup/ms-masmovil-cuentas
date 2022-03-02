@@ -21,16 +21,17 @@ public class ContactService {
     public ContactDto createContact(ContactDto contactDto) {
         Contact contact = modelMapper.map(contactDto, Contact.class);
         return modelMapper.map(contactRepository.save(contact), ContactDto.class);
-
     }
 
-//    @Transactional
-//    public Contact updateContact(Long contactId) {
-//        return contactRepository.update(contactId);
-//    }
-//
-//    @Transactional
-//    public Contact deleteContact(Long contactId) {
-//        return contactRepository.delete(contactId);
-//    }
+    @Transactional
+    public ContactDto updateContact(Long contactId, ContactDto contactDto) {
+        contactRepository.findByContactId(contactId);
+        Contact contactEntity = modelMapper.map(contactDto, Contact.class);
+        return modelMapper.map(contactRepository.save(contactEntity), ContactDto.class);
+    }
+
+    @Transactional
+    public void deleteContact(Long contactId) {
+        contactRepository.deleteById(contactId);
+    }
 }
