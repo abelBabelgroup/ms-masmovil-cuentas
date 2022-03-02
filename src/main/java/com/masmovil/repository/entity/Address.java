@@ -19,9 +19,8 @@ public class Address implements Serializable {
     @Column(name = "ID_SEDE")
     private Long addressId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_CUENTA")
-    private Account accountId;
+    @Column(name = "ID_CUENTA")
+    private Long accountId;
 
     private boolean principal;
 

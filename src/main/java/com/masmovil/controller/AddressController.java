@@ -5,6 +5,8 @@ import com.masmovil.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
+
 @RestController
 @RequestMapping("/address")
 public class AddressController {
@@ -14,7 +16,11 @@ public class AddressController {
 
     @PostMapping
     public AddressDto createAddress(@RequestBody AddressDto addressDto) {
-        return addressService.save(addressDto);
+        if (Objects.isNull(addressDto.getAddressId())) {
+            return addressService.save(addressDto);
+        }
+        // TODO: Gestionar los errores desde un handler
+        throw new RuntimeException("Esa sede ya existe");
     }
 
     @DeleteMapping("/{addressId}")
@@ -24,7 +30,13 @@ public class AddressController {
 
     @PutMapping("/{addressId}")
     public void updateAddress(@PathVariable Long addressId, @RequestBody AddressDto addressDto) {
+
         AddressDto addressDb = addressService.findById(addressId);
-        addressService.delete(addressId);
+        if (Objects.isNull(addressDb)) {
+            // TODO: Gestionar los errores desde un handler
+            throw new RuntimeException("La sede que intenta modificar no existe");
+        }
+        addressDto.setAddressId(addressId);
+        addressService.save(addressDto);
     }
 }

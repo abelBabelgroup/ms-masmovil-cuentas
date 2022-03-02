@@ -2,18 +2,15 @@ package com.masmovil.repository.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "cuentas")
 public class Account implements Serializable {
@@ -36,13 +33,18 @@ public class Account implements Serializable {
     @Column(name = "FEC_FIN_PROPIEDAD")
     private Date endDateOwnership;
 
-//    @OneToMany(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "ID_CUENTA")
-//    private List<Contact> contacts;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_CUENTA")
+    private List<Contact> contacts;
 
-//    @OneToMany(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "ID_SEDE")
-//    private List<Address> addresses;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_CUENTA")
+    private List<Address> addresses;
+
+    public Account() {
+        this.contacts = new ArrayList<>();
+        this.addresses = new ArrayList<>();
+    }
 
     public Account(String ownerId, String name, String cif) {
         this.ownerId = ownerId;

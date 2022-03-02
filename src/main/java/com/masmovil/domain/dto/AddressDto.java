@@ -13,7 +13,7 @@ public class AddressDto implements Serializable {
 
     private Long addressId;
 
-    private AccountDto accountId;
+    private Long accountId;
 
     private boolean principal;
 

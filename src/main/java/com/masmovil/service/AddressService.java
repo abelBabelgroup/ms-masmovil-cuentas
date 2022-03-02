@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 public class AddressService {
 
@@ -32,7 +34,11 @@ public class AddressService {
 
     @Transactional(readOnly = true)
     public AddressDto findById(Long id) {
-        return modelMapper.map(addressRepository.findById(id), AddressDto.class);
+        Optional<Address> address = addressRepository.findById(id);
+        if (address.isPresent()) {
+            return modelMapper.map(address.get(), AddressDto.class);
+        }
+        return null;
     }
 
     @Transactional
