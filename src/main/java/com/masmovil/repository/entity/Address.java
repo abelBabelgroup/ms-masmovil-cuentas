@@ -1,5 +1,6 @@
 package com.masmovil.repository.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,17 +10,18 @@ import java.io.Serializable;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "sedes")
-public class Sede implements Serializable {
+public class Address implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_SEDE")
-    private Long idSede;
+    private Long addressId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CUENTA")
-    private Account idAccount;
+    private Account accountId;
 
     private boolean principal;
 
@@ -28,21 +30,21 @@ public class Sede implements Serializable {
     private String municipio;
 
     @Column(name = "COD_POSTAL")
-    private String codPostal;
+    private String postalCode;
 
     @Column(name = "TIPO_VIA")
-    private String tipoVia;
+    private String streetType;
 
-    private String calle;
+    private String street;
 
-    private String numero;
+    private String number;
 
-    private String bloque;
+    private String block;
 
     private String portal;
 
-    private String planta;
+    private String floor;
 
-    private String letra;
+    private String letter;
 
 }

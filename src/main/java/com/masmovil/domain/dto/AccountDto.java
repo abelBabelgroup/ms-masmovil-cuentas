@@ -2,15 +2,15 @@ package com.masmovil.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class AccountDto implements Serializable {
 
@@ -29,4 +29,13 @@ public class AccountDto implements Serializable {
     private Date startDateOwnership;
 
     private Date endDateOwnership;
+
+    private List<ContactDto> contacts;
+
+    private List<AddressDto> addresses;
+
+    public AccountDto() {
+        this.contacts = new ArrayList<>();
+        this.addresses = new ArrayList<>();
+    }
 }
