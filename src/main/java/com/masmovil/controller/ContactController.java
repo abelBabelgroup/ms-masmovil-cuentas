@@ -2,8 +2,6 @@ package com.masmovil.controller;
 
 import com.masmovil.domain.dto.ContactDto;
 import com.masmovil.service.ContactService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +22,7 @@ public class ContactController {
     @Autowired
     private ContactService contactService;
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<ContactDto> createContact(@Valid @RequestBody ContactDto contactDto) {
         ContactDto contactDto1 = contactService.createContact(contactDto);
         return ResponseEntity.ok(contactDto1);

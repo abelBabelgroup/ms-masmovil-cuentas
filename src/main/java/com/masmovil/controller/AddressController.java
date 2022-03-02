@@ -1,6 +1,6 @@
 package com.masmovil.controller;
 
-import com.masmovil.repository.model.Sede;
+import com.masmovil.repository.entity.Sede;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

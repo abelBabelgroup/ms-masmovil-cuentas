@@ -36,7 +36,7 @@ public class Account implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CUENTA")
-    private List<Contacto> contacts;
+    private List<Contact> contacts;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_SEDE")
