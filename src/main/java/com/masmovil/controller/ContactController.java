@@ -3,17 +3,10 @@ package com.masmovil.controller;
 import com.masmovil.domain.dto.ContactDto;
 import com.masmovil.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/contact")
@@ -23,21 +16,28 @@ public class ContactController {
     private ContactService contactService;
 
     @PostMapping
-    public ResponseEntity<ContactDto> createContact(@Valid @RequestBody ContactDto contactDto) {
-        ContactDto contactDto1 = contactService.createContact(contactDto);
-        return ResponseEntity.ok(contactDto1);
+    public ContactDto createContact(@Valid @RequestBody ContactDto contactDto) {
+
+        if (Objects.isNull(contactDto.getContactId())) {
+            return contactService.save(contactDto);
+        }
+        // TODO: Gestionar los errores desde un handler
+        throw new RuntimeException("Ese contacto ya existe");
     }
 
     @PutMapping("/{contactId}")
-    public ResponseEntity<Void> updateContact(@PathVariable Long contactId,
-        @RequestBody ContactDto contactDto) {
-        contactService.updateContact(contactId, contactDto);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public void updateContact(@PathVariable Long contactId, @RequestBody ContactDto contactDto) {
+        ContactDto contactoDb = contactService.findById(contactId);
+        if (Objects.isNull(contactoDb)) {
+            // TODO: Gestionar los errores desde un handler
+            throw new RuntimeException("El contacto que intenta modificar no existe");
+        }
+        contactDto.setContactId(contactId);
+        contactService.save(contactDto);
     }
 
     @DeleteMapping("/{contactId}")
-    public ResponseEntity<Void> deleteContact(@PathVariable Long contactId) {
+    public void deleteContact(@PathVariable Long contactId) {
         contactService.deleteContact(contactId);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

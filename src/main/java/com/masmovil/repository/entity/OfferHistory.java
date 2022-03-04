@@ -22,6 +22,7 @@ public class OfferHistory implements Serializable {
     @JoinColumn(name = "ID_OFERTA")
     private Offer offerId;
 
+    @Column(name = "ESTADO")
     private String state;
 
     @Column(name = "FEC_ESTADO")

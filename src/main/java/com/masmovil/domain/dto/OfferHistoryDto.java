@@ -1,6 +1,7 @@
 package com.masmovil.domain.dto;
 
 import com.masmovil.repository.entity.Offer;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class OfferHistoryDto implements Serializable {
 
     private Long historyId;

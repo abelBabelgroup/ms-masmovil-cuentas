@@ -18,20 +18,14 @@ public class AccountController {
 
     @GetMapping
     public List<AccountDto> getAccounts(@RequestParam List<String> ownerId, @RequestParam(required = false) String name, @RequestParam(required = false) String cif) {
-        List<AccountDto> accountsDto;
-        if (Objects.isNull(name) && Objects.isNull(cif)) {
-            accountsDto = accountService.getAccounts(ownerId);
-            return accountsDto;
-        }
-        accountsDto = accountService.getAccounts(ownerId, name, cif);
-        return accountsDto;
+        return accountService.getAccounts(ownerId, name, cif);
     }
 
     @GetMapping("/{accountId}")
-    public AccountDto getAccount(@PathVariable Long accountId ) throws AccountNotFoundException {
+    public AccountDto getAccount(@PathVariable Long accountId) throws AccountNotFoundException {
         AccountDto accountDto = accountService.getAccountInfo(accountId);
         if (Objects.isNull(accountDto)) {
-            // Devolver error personalizado y gestionarlo en un handler
+            // TODO: Devolver error personalizado y gestionarlo en un handler
             throw new AccountNotFoundException("La cuenta que buscas no existe");
         }
         return accountDto;

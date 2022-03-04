@@ -1,5 +1,6 @@
 package com.masmovil.domain.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class OfferDto implements Serializable {
 
     private Long offerId;
@@ -19,13 +21,13 @@ public class OfferDto implements Serializable {
     @NotNull
     private Integer originOfferId;
 
-    private String accountId;
+    private Long accountId;
 
     @Email
     @Max(50)
     private String ownerId;
 
-    private Integer version;
+    private Long version;
 
     private Date entryDate;
 

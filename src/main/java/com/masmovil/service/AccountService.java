@@ -25,14 +25,6 @@ public class AccountService {
     private ModelMapper modelMapper;
 
     @Transactional(readOnly = true)
-    public List<AccountDto> getAccounts(List<String> ownerId) {
-        List<AccountDto> cuentasDto = new ArrayList<>();
-        ownerId.forEach(id -> cuentasDto.addAll(accountRepository.findByOwnerId(id).stream().map(account -> modelMapper.map(account, AccountDto.class)).collect(Collectors.toList())));
-
-        return cuentasDto;
-    }
-
-    @Transactional(readOnly = true)
     public List<AccountDto> getAccounts(List<String> ownerId, String name, String cif) {
         List<AccountDto> accountsDto = new ArrayList<>();
         ExampleMatcher caseInsensitiveExampleMatcher = ExampleMatcher.matchingAll().withIgnoreCase();
@@ -46,7 +38,7 @@ public class AccountService {
 
     @Transactional(readOnly = true)
     public AccountDto getAccountInfo(Long accountId) {
-        Optional<Account> cuenta = accountRepository.findById(accountId);
-        return cuenta.map(value -> modelMapper.map(value, AccountDto.class)).orElse(null);
+        Optional<Account> account = accountRepository.findById(accountId);
+        return account.map(value -> modelMapper.map(value, AccountDto.class)).orElse(null);
     }
 }

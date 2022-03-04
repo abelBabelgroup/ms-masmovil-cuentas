@@ -16,6 +16,7 @@ import java.util.List;
 public class Account implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CUENTA")
     private Long accountId;
 
