@@ -1,0 +1,16 @@
+package com.masmovil.domain;
+
+public enum OfferState {
+    CONFIGURACION,
+    APROBACION_MM,
+    SCORING,
+    APROBACION_DESCUENTOS,
+    APROBACION_CLIENTE,
+    RECHAZADO_CLIENTE,
+    COMPLETAR_INFORMACION,
+    PDTE_FIRMA,
+    RECHAZADO_FIRMA,
+    FINALIZADA,
+    CANCELADA,
+    CREADA
+}

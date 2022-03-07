@@ -8,15 +8,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("/address")
+@RequestMapping("/accounts/{accountId}/address")
 public class AddressController {
 
     @Autowired
     private AddressService addressService;
 
     @PostMapping
-    public AddressDto createAddress(@RequestBody AddressDto addressDto) {
+    public AddressDto createAddress(@PathVariable Long accountId, @RequestBody AddressDto addressDto) {
         if (Objects.isNull(addressDto.getAddressId())) {
+            addressDto.setAccountId(accountId);
             return addressService.save(addressDto);
         }
         // TODO: Gestionar los errores desde un handler
@@ -24,12 +25,12 @@ public class AddressController {
     }
 
     @DeleteMapping("/{addressId}")
-    public void deleteAddress(@PathVariable Long addressId) {
-        addressService.delete(addressId);
+    public void deleteAddress(@PathVariable Long accountId, @PathVariable Long addressId) {
+        addressService.delete(accountId, addressId);
     }
 
     @PutMapping("/{addressId}")
-    public void updateAddress(@PathVariable Long addressId, @RequestBody AddressDto addressDto) {
+    public void updateAddress(@PathVariable Long accountId, @PathVariable Long addressId, @RequestBody AddressDto addressDto) {
 
         AddressDto addressDb = addressService.findById(addressId);
         if (Objects.isNull(addressDb)) {
@@ -37,6 +38,7 @@ public class AddressController {
             throw new RuntimeException("La sede que intenta modificar no existe");
         }
         addressDto.setAddressId(addressId);
+        addressDto.setAccountId(accountId);
         addressService.save(addressDto);
     }
 }

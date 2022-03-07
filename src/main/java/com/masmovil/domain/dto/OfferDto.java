@@ -1,5 +1,6 @@
 package com.masmovil.domain.dto;
 
+import com.masmovil.domain.OfferState;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -18,8 +19,7 @@ public class OfferDto implements Serializable {
 
     private Long offerId;
 
-    @NotNull
-    private Integer originOfferId;
+    private Long originOfferId;
 
     private Long accountId;
 
@@ -29,13 +29,13 @@ public class OfferDto implements Serializable {
 
     private Long version;
 
-    private Date entryDate;
+    private LocalDate entryDate;
 
-    private Date stateDate;
+    private LocalDate stateDate;
 
     @NotNull
     @Size(max = 20)
-    private String state;
+    private OfferState state;
 
     @Size(max = 10000)
     private String content;

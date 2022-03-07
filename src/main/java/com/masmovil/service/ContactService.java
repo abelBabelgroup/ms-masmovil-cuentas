@@ -32,7 +32,7 @@ public class ContactService {
     }
 
     @Transactional
-    public void deleteContact(Long contactId) {
-        contactRepository.deleteById(contactId);
+    public void deleteContact(Long accountId, Long contactId) {
+        contactRepository.deleteByAccountIdAndContactId(accountId, contactId);
     }
 }

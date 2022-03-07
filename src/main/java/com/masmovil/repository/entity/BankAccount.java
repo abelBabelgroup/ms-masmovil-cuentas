@@ -11,17 +11,17 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "cuentas_bancarias")
+@Table(name = "cuenta_bancaria")
 public class BankAccount implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CUENTA_BANCARIA")
+    @Column(name = "id_cuenta_bancaria")
     private Long bankAccountId;
 
-    @Column(name = "ID_CUENTA")
+    @Column(name = "id_cuenta")
     private Long accountId;
 
-    @Column(name = "NUMERO_CUENTA")
+    @Column(name = "numero_cuenta")
     private Long accountNumber;
 }

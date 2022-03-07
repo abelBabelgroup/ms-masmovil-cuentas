@@ -11,15 +11,15 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "sedes")
+@Table(name = "sede")
 public class Address implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_SEDE")
+    @Column(name = "id_sede")
     private Long addressId;
 
-    @Column(name = "ID_CUENTA")
+    @Column(name = "id_cuenta")
     private Long accountId;
 
     private boolean principal;
@@ -28,22 +28,27 @@ public class Address implements Serializable {
 
     private String municipio;
 
-    @Column(name = "COD_POSTAL")
+    @Column(name = "cod_postal")
     private String postalCode;
 
-    @Column(name = "TIPO_VIA")
+    @Column(name = "tipo_via")
     private String streetType;
 
+    @Column(name = "calle")
     private String street;
 
+    @Column(name = "numero")
     private String number;
 
+    @Column(name = "bloque")
     private String block;
 
     private String portal;
 
+    @Column(name = "planta")
     private String floor;
 
+    @Column(name = "letra")
     private String letter;
 
 }

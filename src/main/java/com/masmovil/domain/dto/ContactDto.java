@@ -1,5 +1,6 @@
 package com.masmovil.domain.dto;
 
+import com.masmovil.domain.ContactType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,7 +43,7 @@ public class ContactDto implements Serializable {
     private String email;
 
     @NotNull
-    private String type;
+    private ContactType type;
 
     @NotNull
     private boolean manager;

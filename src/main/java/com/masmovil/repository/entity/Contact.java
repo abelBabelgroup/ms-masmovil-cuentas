@@ -1,5 +1,6 @@
 package com.masmovil.repository.entity;
 
+import com.masmovil.domain.ContactType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,34 +15,34 @@ public class Contact implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CONTACTO")
+    @Column(name = "id_contacto")
     private Long contactId;
 
-    @Column(name = "ID_CUENTA")
+    @Column(name = "id_cuenta")
     private Long accountId;
 
-    @Column(name = "TIPO_DOCUMENTO")
+    @Column(name = "tipo_documento")
     private String documentType;
 
-    @Column(name = "DOCUMENTO")
+    @Column(name = "documento")
     private String document;
 
-    @Column(name = "NOMBRE")
+    @Column(name = "nombre")
     private String name;
 
-    @Column(name = "APELLIDO")
+    @Column(name = "apellidos")
     private String surname;
 
-    @Column(name = "TELEFONO")
+    @Column(name = "telefono")
     private String phoneNumber;
 
-    @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "TIPO")
-    private String type;
+    @Column(name = "tipo")
+    @Enumerated(EnumType.STRING)
+    private ContactType type;
 
-    @Column(name = "APODERADO")
+    @Column(name = "apoderado")
     private boolean manager;
 
 }

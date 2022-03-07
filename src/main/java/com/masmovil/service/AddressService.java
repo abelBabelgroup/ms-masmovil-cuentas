@@ -31,8 +31,8 @@ public class AddressService {
     }
 
     @Transactional
-    public void delete(Long id) {
-        addressRepository.deleteById(id);
+    public void delete(Long accountId, Long addressId) {
+        addressRepository.deleteByAccountIdAndAddressId(accountId, addressId);
     }
 
 }

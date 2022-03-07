@@ -2,50 +2,54 @@ package com.masmovil.repository.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "cuentas")
+@Table(name = "cuenta")
 public class Account implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CUENTA")
+    @Column(name = "id_cuenta")
     private Long accountId;
 
     private String cif;
 
-    @Column(name = "NOMBRE")
+    @Column(name = "nombre")
     private String name;
 
-    @Column(name = "ID_PROPIETARIO")
+    @Column(name = "sitio_web")
+    private String webSite;
+
+    @Column(name = "id_propietario")
     private String ownerId;
 
-    @Column(name = "FEC_INICIO_PROPIEDAD")
+    @Column(name = "fec_inicio_propiedad")
     private Date startDateOwnership;
 
-    @Column(name = "FEC_FIN_PROPIEDAD")
+    @Column(name = "fec_fin_propiedad")
     private Date endDateOwnership;
 
+    @Column(name = "marcas")
+    private String brands;
+
+    @Column(name = "canal")
+    private String channel;
+
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_CUENTA")
+    @JoinColumn(name = "id_cuenta")
     private List<Contact> contacts;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_CUENTA")
+    @JoinColumn(name = "id_cuenta")
     private List<Address> addresses;
-
-    public Account() {
-        this.contacts = new ArrayList<>();
-        this.addresses = new ArrayList<>();
-    }
 
     public Account(String ownerId, String name, String cif) {
         this.ownerId = ownerId;
