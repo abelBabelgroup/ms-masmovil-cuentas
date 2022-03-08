@@ -1,6 +1,7 @@
 package com.masmovil.repository.entity;
 
 import com.masmovil.domain.OfferState;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "oferta")
 public class Offer implements Serializable {
 
@@ -43,10 +45,12 @@ public class Offer implements Serializable {
     @Column(name = "contenido")
     private String content;
 
-    public Offer(Long accountId, LocalDate entryDate, LocalDate stateDate, OfferState state) {
-        this.accountId = accountId;
-        this.entryDate = entryDate;
-        this.stateDate = stateDate;
-        this.state = state;
+    public static Offer from(Long accountId, LocalDate entryDate, LocalDate stateDate, OfferState state) {
+        Offer offer = new Offer();
+        offer.setAccountId(accountId);
+        offer.setEntryDate(entryDate);
+        offer.setStateDate(stateDate);
+        offer.setState(state);
+        return offer;
     }
 }

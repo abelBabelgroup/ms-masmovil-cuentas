@@ -1,6 +1,5 @@
 package com.masmovil.domain.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -31,10 +30,9 @@ public class AccountDto implements Serializable {
     @Size(max = 50)
     private String ownerId;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date startDateOwnership;
+    private LocalDate startDateOwnership;
 
-    private Date endDateOwnership;
+    private LocalDate endDateOwnership;
 
     private String brands;
 

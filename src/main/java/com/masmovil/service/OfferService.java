@@ -25,6 +25,9 @@ public class OfferService {
     private OfferRepository offerRepository;
 
     @Autowired
+    private OfferHistoryService offerHistoryService;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     @Transactional(readOnly = true)
@@ -35,14 +38,15 @@ public class OfferService {
         return offersDto;
     }
 
-    private void findByAccountIdByExample(LocalDate entryDate, LocalDate stateDate, List<OfferState> states, List<OfferDto> offersDto, ExampleMatcher caseInsensitiveExampleMatcher, Long id) {
+    @Transactional(readOnly = true)
+    public void findByAccountIdByExample(LocalDate entryDate, LocalDate stateDate, List<OfferState> states, List<OfferDto> offersDto, ExampleMatcher caseInsensitiveExampleMatcher, Long id) {
         if (!Objects.isNull(states)) {
             states.forEach(state -> {
-                Example<Offer> example = Example.of(new Offer(id, entryDate, stateDate, state), caseInsensitiveExampleMatcher);
+                Example<Offer> example = Example.of(Offer.from(id, entryDate, stateDate, state), caseInsensitiveExampleMatcher);
                 offersDto.addAll(offerRepository.findAll(example).stream().map(offer -> modelMapper.map(offer, OfferDto.class)).collect(Collectors.toList()));
             });
         } else {
-            Example<Offer> example = Example.of(new Offer(id, entryDate, stateDate, null), caseInsensitiveExampleMatcher);
+            Example<Offer> example = Example.of(Offer.from(id, entryDate, stateDate, null), caseInsensitiveExampleMatcher);
             offersDto.addAll(offerRepository.findAll(example).stream().map(offer -> modelMapper.map(offer, OfferDto.class)).collect(Collectors.toList()));
         }
     }
@@ -64,4 +68,30 @@ public class OfferService {
         return modelMapper.map(offerRepository.save(modelMapper.map(offerDto, Offer.class)), OfferDto.class);
     }
 
+    @Transactional
+    public OfferDto saveWithoutOriginOffer(OfferDto offerDto) {
+//        offerDto.setOriginOfferId(-1L);
+        OfferDto newOfferDto = save(offerDto);
+        offerDto.setOfferId(newOfferDto.getOfferId());
+        offerDto.setOriginOfferId(newOfferDto.getOfferId());
+        return save(offerDto);
+    }
+
+    @Transactional
+    public OfferDto saveVersion(OfferDto offerDto) {
+        // Versiona la oferta indicada, pasándola a un estado CANCELADA y creando una nueva oferta en estado CREADA con una versión superior.
+        // Devolverá la nueva oferta.
+        // Versionamos la oferta actual
+        offerDto.setState(OfferState.CANCELADA);
+        offerHistoryService.saveHistory(offerDto, "SpringSecurity.USER");
+        save(offerDto);
+
+        // Creamos nueva oferta a partir de la anterior
+        offerDto.setOfferId(null);
+        // TODO: con que origen de oferta?
+        offerDto.setVersion(offerDto.getVersion() + 1);
+        offerDto.setState(OfferState.CREADA);
+
+        return saveWithoutOriginOffer(offerDto);
+    }
 }

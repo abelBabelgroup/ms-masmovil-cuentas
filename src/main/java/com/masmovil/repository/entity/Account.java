@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -32,10 +32,10 @@ public class Account implements Serializable {
     private String ownerId;
 
     @Column(name = "fec_inicio_propiedad")
-    private Date startDateOwnership;
+    private LocalDate startDateOwnership;
 
     @Column(name = "fec_fin_propiedad")
-    private Date endDateOwnership;
+    private LocalDate endDateOwnership;
 
     @Column(name = "marcas")
     private String brands;
@@ -47,13 +47,15 @@ public class Account implements Serializable {
     @JoinColumn(name = "id_cuenta")
     private List<Contact> contacts;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_cuenta")
     private List<Address> addresses;
 
-    public Account(String ownerId, String name, String cif) {
-        this.ownerId = ownerId;
-        this.name = name;
-        this.cif = cif;
+    public static Account from(String ownerId, String name, String cif) {
+        Account account = new Account();
+        account.setOwnerId(ownerId);
+        account.setName(name);
+        account.setCif(cif);
+        return account;
     }
 }

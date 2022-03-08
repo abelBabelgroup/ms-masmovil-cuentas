@@ -29,7 +29,7 @@ public class AccountService {
         List<AccountDto> accountsDto = new ArrayList<>();
         ExampleMatcher caseInsensitiveExampleMatcher = ExampleMatcher.matchingAll().withIgnoreCase();
         ownerId.forEach(id ->{
-            Example<Account> example = Example.of(new Account(id, name, cif), caseInsensitiveExampleMatcher);
+            Example<Account> example = Example.of(Account.from(id, name, cif), caseInsensitiveExampleMatcher);
             accountsDto.addAll(accountRepository.findAll(example).stream().map(account -> modelMapper.map(account, AccountDto.class)).collect(Collectors.toList()));
         });
 

@@ -1,5 +1,6 @@
 package com.masmovil.service;
 
+import com.masmovil.domain.dto.OfferDto;
 import com.masmovil.domain.dto.OfferHistoryDto;
 import com.masmovil.repository.OfferHistoryRepository;
 import com.masmovil.repository.entity.OfferHistory;
@@ -28,6 +29,16 @@ public class OfferHistoryService {
     @Transactional
     public OfferHistoryDto save(OfferHistoryDto offerHistoryDto) {
         return modelMapper.map(offerHistoryRepository.save(modelMapper.map(offerHistoryDto, OfferHistory.class)), OfferHistoryDto.class);
+    }
+
+    public void saveHistory(OfferDto offerDb, String user) {
+        OfferHistoryDto offerHistoryDto = new OfferHistoryDto();
+        offerHistoryDto.setOfferId(offerDb.getOfferId());
+        offerHistoryDto.setState(offerDb.getState());
+        offerHistoryDto.setStateDate(offerDb.getStateDate());
+        offerHistoryDto.setUserState(user);
+
+        save(offerHistoryDto);
     }
 
 }
